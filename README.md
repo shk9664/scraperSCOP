@@ -26,8 +26,8 @@ optional arguments:
 
 -h, --help            show this help message and exit
 
--splice [SPLICE]      Excise the chains/residues of interest from the PDB files. This is still a work in progress, please double check your files and use at your own risk.
+-splice [BOOL]      Excise the chains/residues of interest from the PDB files. This is still a work in progress, please double check your files and use at your own risk.
   
--download [DOWNLOAD]  Scrape and download the PDBs listed for the SCOPid.
+-download [BOOL]  Scrape and download the PDBs listed for the SCOPid.
 
--archive [ARCHIVE]    Archive the folder into a zip file.
+-archive [BOOL]    Archive the folder into a zip file.
