@@ -19,10 +19,15 @@ HOW TO USE THIS
 Downloads and zips all the PDBs associated with the SCOP ID.
 
 positional arguments:
-  SCOPid                Enter the SCOP ID
+
+SCOPid                Enter the SCOP ID
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -splice [SPLICE]      Excise the chains/residues of interest from the PDB files. This is still a work in progress, please double check                         your files and use at your own risk.
-  -download [DOWNLOAD]  Scrape and download the PDBs listed for the SCOPid.
-  -archive [ARCHIVE]    Archive the folder into a zip file.
+
+-h, --help            show this help message and exit
+
+-splice [SPLICE]      Excise the chains/residues of interest from the PDB files. This is still a work in progress, please double check your files and use at your own risk.
+  
+-download [DOWNLOAD]  Scrape and download the PDBs listed for the SCOPid.
+
+-archive [ARCHIVE]    Archive the folder into a zip file.
