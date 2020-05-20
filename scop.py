@@ -126,7 +126,7 @@ def pdbDownloader(pdbList,pdbChain,SCOPid):
         httpAddress = 'https://files.rcsb.org/download/' + str(pdbList[i]) + '.pdb'
         urllib.request.urlretrieve(httpAddress, fileName)
             
-        b = 'Downloading File: ' +str(i+1) +'/' + str(size)+ '    Current Progress: ' + str(round(i*100/(size-1),2)) +' %'
+        b = 'Downloading File: ' +str(i+1) +'/' + str(size)+ '    Current Progress: ' + '{0:.2f}'.format(round(i*100/(size-1),2))  +' %'
         print (b, end="\r")                                                                      
 
 def pdbSlicer(SCOPid):
@@ -266,7 +266,7 @@ if str(SCOPID).isnumeric() != True:
 if args.download == True:
     test0, test1 = pdbGenerator(SCOPID)
     pdbDownloader(test0,test1,SCOPID)
-    b = 'Downloading File: ' +str(len(test0)) +'/' + str(len(test0))+ '    Current Progress: ' + '{0:.2f}'.format(round(i*100/(size-1),2)) +' %'
+    b = 'Downloading File: ' +str(len(test0)) +'/' + str(len(test0))+ '    Current Progress: ' + '{0:.2f}'.format(round(100,2)) +' %'
     print (b)
     print('Downloading Files Complete.')
     
