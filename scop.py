@@ -35,7 +35,7 @@ def pdbGenerator(SCOPid):
     exitCode = False 
     
     while exitCode == False: 
-        driver = webdriver.Chrome()
+        driver = webdriver.Chrome(executable_path=r"E:\Documents\SCOP code\chromedriver.exe")
         print('Waiting '+str(sleepTime)+' seconds for Web Page to load...')    
         driver.get('http://scop.mrc-lmb.cam.ac.uk/term/'+str(SCOPID))
         time.sleep(sleepTime)
@@ -91,14 +91,14 @@ def pdbGenerator(SCOPid):
         consistencyVal = len(outputPDB)
 
         if totDownloads == consistencyVal:
-            print('Total of '+str(totDownloads)+' structures successfully scraped from SCOP.')
+            print('Validation Successful: Total of '+str(totDownloads)+' structures successfully scraped from SCOP.')
             exitCode = True
         elif sleepTime > 10:
-            print('Wait time is too long. Will only export '+str(consistencyVal)+' out of '+str(totDownloads)+' potential structures.')
+            print('Validation Failure: Wait time is too long. Will only export '+str(consistencyVal)+' out of '+str(totDownloads)+' potential structures.')
             exitCode = True
         else: 
-            print('Total scraped structures ('+str(consistencyVal)+') inconsistent with total available ('+str(totDownloads)+').')
-            print('Increasing the web page loading time to '+str(sleepTime+1)+' seconds and trying again.')
+            print('Validation Failure: Total scraped structures ('+str(consistencyVal)+') inconsistent with total available ('+str(totDownloads)+').')
+            print('Validation Failure: Increasing the web page loading time to '+str(sleepTime+1)+' seconds and trying again.')
             sleepTime += 1 
             clickSleep = sleepTime*0.1
             exitCode = False 
@@ -252,7 +252,7 @@ def pdbSlicer(SCOPid):
 
 parser = argparse.ArgumentParser(description='Downloads and zips all the PDBs associated with the SCOP ID.')
 parser.add_argument('SCOPid', help='Enter the SCOP ID', type=int)
-parser.add_argument("-splice", type=str2bool, nargs='?', const=True, default=False, help='Excise the chains/residues of interest from the PDB files. Work in Progress.')
+parser.add_argument("-splice", type=str2bool, nargs='?', const=True, default=True, help='Excise the chains/residues of interest from the PDB files. Work in Progress.')
 parser.add_argument("-download", type=str2bool, nargs='?', const=True, default=True, help='Scrape and download the PDBs listed for the SCOPid.')
 parser.add_argument("-archive", type=str2bool, nargs='?', const=True, default=True, help='Archive the folder into a zip file.')
 args = parser.parse_args()
@@ -266,7 +266,7 @@ if str(SCOPID).isnumeric() != True:
 if args.download == True:
     test0, test1 = pdbGenerator(SCOPID)
     pdbDownloader(test0,test1,SCOPID)
-    b = 'Downloading File: ' +str(len(test0)) +'/' + str(len(test0))+ '    Current Progress: ' + str(round(100,2)) +' %'
+    b = 'Downloading File: ' +str(len(test0)) +'/' + str(len(test0))+ '    Current Progress: ' + '{0:.2f}'.format(round(i*100/(size-1),2)) +' %'
     print (b)
     print('Downloading Files Complete.')
     
